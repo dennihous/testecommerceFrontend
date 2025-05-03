@@ -1,0 +1,94 @@
+{
+    "authUsers": [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "password": "password123",
+        "role": "user"
+      },
+      {
+        "id": 2,
+        "name": "Admin User",
+        "email": "admin@example.com",
+        "password": "adminpassword",
+        "role": "admin"
+      }
+    ],
+    "customers": [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "address": "123 Main St, City, Country"
+      },
+      {
+        "id": 2,
+        "name": "Jane Smith",
+        "email": "jane@example.com",
+        "address": "456 Elm St, City, Country"
+      }
+    ],
+    "products": [
+      {
+        "id": 1,
+        "name": "Product One",
+        "description": "This is a description for Product One.",
+        "price": 19.99,
+        "image": "https://via.placeholder.com/150"
+      },
+      {
+        "id": 2,
+        "name": "Product Two",
+        "description": "This is a description for Product Two.",
+        "price": 29.99,
+        "image": "https://via.placeholder.com/150"
+      },
+      {
+        "id": 3,
+        "name": "Product Three",
+        "description": "This is a description for Product Three.",
+        "price": 39.99,
+        "image": "https://via.placeholder.com/150"
+      }
+    ],
+    "orders": [
+      {
+        "id": 101,
+        "customerId": 1,
+        "orderDate": "2025-04-01",
+        "total": 49.98
+      }
+    ],
+    "orderItems": [
+      {
+        "id": 201,
+        "orderId": 101,
+        "productId": 1,
+        "quantity": 1
+      },
+      {
+        "id": 202,
+        "orderId": 101,
+        "productId": 2,
+        "quantity": 1
+      }
+    ],
+    "reviews": [
+      {
+        "id": 301,
+        "productId": 1,
+        "customerId": 1,
+        "rating": 4,
+        "comment": "Great product!"
+      },
+      {
+        "id": 302,
+        "productId": 2,
+        "customerId": 2,
+        "rating": 5,
+        "comment": "Excellent quality!"
+      }
+    ]
+  }
+  
