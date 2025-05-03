@@ -21,7 +21,7 @@ export default function Navbar() {
           style={{ height: '60px' }}
         >
           <i className="bi bi-shop fs-4 me-2" />
-          <span className="d-none d-sm-inline">Dennis&apos; Shop</span>
+          <span className="d-none d-sm-inline">Dennis's Shop</span>
         </Link>
 
         <div className="navbar-collapse">
@@ -33,7 +33,7 @@ export default function Navbar() {
                   <i className="bi bi-cart3 fs-5" />
                   {totalQty > 0 && (
                     <span
-                      className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                      className="position-absolute top-25 start-75 translate-middle badge rounded-pill bg-danger"
                       style={{ fontSize: '0.65rem', padding: '3px 5px' }}
                     >
                       {totalQty}

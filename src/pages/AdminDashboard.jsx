@@ -91,7 +91,7 @@ export default function AdminDashboard() {
           {products.map(p => (
             <tr key={p.id}>
               <td>{p.name}</td>
-              <td>${p.price.toFixed(2)}</td>
+              <td>£{p.price.toFixed(2)}</td>
               <td>{p.stock}</td>
               <td>
                 <Button variant="outline-secondary" size="sm" onClick={() => openEdit(p)}>
