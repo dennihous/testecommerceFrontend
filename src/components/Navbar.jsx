@@ -5,7 +5,7 @@ import { BasketContext } from '../contexts/BasketContext';
 
 export default function Navbar() {
   const { user, isAdmin, isCustomer, logout } = useContext(AuthContext);
-  const { items } = useContext(BasketContext);
+  const { items, totalQty } = useContext(BasketContext);
 
 
   return (
@@ -31,12 +31,12 @@ export default function Navbar() {
               <li className="nav-item mx-1 mx-lg-2">
                 <NavLink className="nav-link position-relative p-2" to="/basket">
                   <i className="bi bi-cart3 fs-5" />
-                  {items.length > 0 && (
+                  {totalQty > 0 && (
                     <span
                       className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                       style={{ fontSize: '0.65rem', padding: '3px 5px' }}
                     >
-                      {items.length}
+                      {totalQty}
                     </span>
                   )}
                 </NavLink>
