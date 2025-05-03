@@ -1,29 +1,92 @@
-import { Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+import { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
+import { BasketContext } from '../contexts/BasketContext';
 
-const Navbar = () => {
-  const { token, logout } = useAuth();
+export default function Navbar() {
+  const { user, isAdmin, isCustomer, logout } = useContext(AuthContext);
+  const { items } = useContext(BasketContext);
+
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container">
-        <Link className="navbar-brand" to="/">ECommerce</Link>
-        <div>
-          {token ? (
-            <>
-              <Link className="btn btn-outline-primary mx-1" to="/products">Products</Link>
-              <Link className="btn btn-outline-primary mx-1" to="/customers">Customers</Link>
-              <Link className="btn btn-outline-primary mx-1" to="/orders">Orders</Link>
-              <Link className="btn btn-outline-primary mx-1" to="/reviews">Reviews</Link>
-              <button className="btn btn-danger mx-1" onClick={logout}>Logout</button>
-            </>
-          ) : (
-            <Link className="btn btn-primary" to="/login">Login</Link>
-          )}
+    <nav
+      className="navbar navbar-expand navbar-dark bg-primary sticky-top"
+      style={{ height: '60px' }}
+    >
+      <div className="container-fluid px-3">
+
+        <Link
+          className="navbar-brand fw-bold d-flex align-items-center"
+          to="/"
+          style={{ height: '60px' }}
+        >
+          <i className="bi bi-shop fs-4 me-2" />
+          <span className="d-none d-sm-inline">Dennis&apos; Shop</span>
+        </Link>
+
+        <div className="navbar-collapse">
+          <ul className="navbar-nav ms-auto align-items-center">
+
+            {(items.length > 0 || user) && (
+              <li className="nav-item mx-1 mx-lg-2">
+                <NavLink className="nav-link position-relative p-2" to="/basket">
+                  <i className="bi bi-cart3 fs-5" />
+                  {items.length > 0 && (
+                    <span
+                      className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                      style={{ fontSize: '0.65rem', padding: '3px 5px' }}
+                    >
+                      {items.length}
+                    </span>
+                  )}
+                </NavLink>
+              </li>
+            )}
+
+            {isCustomer && (
+              <li className="nav-item mx-1 mx-lg-2">
+                <NavLink className="nav-link p-2" to="/customer">
+                  <i className="bi bi-person-circle me-lg-1" />
+                  <span className="d-none d-lg-inline">Account</span>
+                </NavLink>
+              </li>
+            )}
+
+            {isAdmin && (
+              <li className="nav-item mx-1 mx-lg-2">
+                <NavLink className="nav-link p-2" to="/admin">
+                  <i className="bi bi-speedometer2 me-lg-1" />
+                  <span className="d-none d-lg-inline">Admin</span>
+                </NavLink>
+              </li>
+            )}
+
+            {user ? (
+              <li className="nav-item mx-1 mx-lg-2">
+                <button className="btn btn-outline-light py-1 px-2" onClick={logout}>
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <>
+                <li className="nav-item mx-1 mx-lg-2">
+                  <NavLink className="nav-link p-2" to="/login">
+                    <i className="bi bi-box-arrow-in-right me-lg-1" />
+                    <span className="d-none d-lg-inline">Login</span>
+                  </NavLink>
+                </li>
+                <li className="nav-item mx-1 mx-lg-2">
+                  <NavLink className="btn btn-outline-light py-1 px-2" to="/register">
+                    Register
+                  </NavLink>
+                </li>
+              </>
+            )}
+
+          </ul>
         </div>
       </div>
     </nav>
   );
-};
+}
 
-export default Navbar;

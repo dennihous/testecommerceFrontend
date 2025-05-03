@@ -1,36 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import dummyData from '../data/dummyData.json';
+import { useEffect, useState } from 'react';
+import api from '../services/api';
 
-const AdminDashboard = () => {
+export default function AdminDashboard() {
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    setProducts(dummyData.products);
-  }, []);
+  useEffect(() => { api.get('/products').then(r => setProducts(r.data)); }, []);
 
+  // Add handlers for create/update/delete
   return (
-    <div className="container mt-4">
+    <div>
       <h2>Admin Dashboard</h2>
-      <h4>Existing Products</h4>
-      {products.length === 0 ? (
-        <p>No products available.</p>
-      ) : (
-        <ul className="list-group">
-          {products.map(product => (
-            <li key={product.id} className="list-group-item d-flex justify-content-between align-items-center">
-              {product.name} - ${product.price}
-              <button
-                className="btn btn-danger btn-sm"
-                onClick={() => alert(`Delete product ${product.id}`)}
-              >
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+      {/* Form to create/update products and list with edit/delete buttons */}
     </div>
   );
-};
-
-export default AdminDashboard;
+}

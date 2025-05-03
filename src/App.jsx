@@ -1,35 +1,50 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { useAuth } from './contexts/AuthContext';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
-import ProductsPage from './pages/ProductsPage';
-import CustomersPage from './pages/CustomersPage';
-import OrdersPage from './pages/OrdersPage';
-import ReviewsPage from './pages/ReviewsPage';
-import Navbar from './components/Navbar';
+import RegisterPage from './pages/RegisterPage';
+import ProductDetailsPage from './pages/ProductDetailsPage';
+import CustomerPage from './pages/CustomerPage';
+import AdminDashboard from './pages/AdminDashboard';
+import BasketPage from './pages/BasketPage';
+import PrivateRoute from './components/PrivateRoute';
 
-const App = () => {
-  const { token } = useAuth();
-
+export default function App() {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        {token ? (
-          <>
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/customers" element={<CustomersPage />} />
-            <Route path="/orders" element={<OrdersPage />} />
-            <Route path="/reviews" element={<ReviewsPage />} />
-          </>
-        ) : (
-          <Route path="*" element={<Navigate to="/login" />} />
-        )}
-      </Routes>
+      <main className="container my-4 flex-grow-1" >
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/products" element={<HomePage />} />
+          <Route path="/products/:id" element={<ProductDetailsPage />} />
+          <Route 
+            path="/customer" element={
+              <PrivateRoute allow={['Customer']}>
+                <CustomerPage />
+              </PrivateRoute>
+            } 
+          />
+          <Route 
+            path="/admin" element={
+              <PrivateRoute allow={['Admin']}>
+                <AdminDashboard />
+              </PrivateRoute>
+            } 
+          />
+          <Route 
+            path="/basket" element={
+              <PrivateRoute allow={['Customer', 'Admin']}>
+                <BasketPage />
+              </PrivateRoute>
+              } 
+            />
+        </Routes>
+      </main>
+      <Footer />
     </>
   );
-};
-
-export default App;
+}
