@@ -7,7 +7,10 @@ export default function Navbar() {
   const { user, isAdmin, isCustomer, logout } = useContext(AuthContext);
   const { items, totalQty } = useContext(BasketContext);
 
-
+// uses sticky top so that if you scroll down the navbar will remain there
+// uses inline styling and bootstrap for styling
+// has conditional navbar view depending on who is logged in
+// utilises navlink to navigate through the web page
   return (
     <nav
       className="navbar navbar-expand navbar-dark bg-primary sticky-top"
@@ -21,7 +24,7 @@ export default function Navbar() {
           style={{ height: '60px' }}
         >
           <i className="bi bi-shop fs-4 me-2" />
-          <span className="d-none d-sm-inline">Dennis's Shop</span>
+          <span className="d-none d-sm-inline">Dennis' Shop</span>
         </Link>
 
         <div className="navbar-collapse">

@@ -8,6 +8,8 @@ const ID_CLAIM = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameiden
 const EMAIL_CLAIM = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress';
 const ROLE_CLAIM = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';
 
+// when decoding the token, it returns the keys of the URLs above
+
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
