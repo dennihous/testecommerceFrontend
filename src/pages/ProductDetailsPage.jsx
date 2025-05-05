@@ -10,14 +10,14 @@ export default function ProductDetailsPage() {
   const { addItem } = useContext(BasketContext);
   const { user, isCustomer } = useContext(AuthContext);
 
-  const [product,   setProduct]   = useState(null);
-  const [reviews,   setReviews]   = useState([]);
+  const [product, setProduct] = useState(null);
+  const [reviews, setReviews] = useState([]);
 
-  const [custId,    setCustId]    = useState(null);
-  const [rating,    setRating]    = useState(5);
-  const [content,   setContent]   = useState('');
-  const [saving,    setSaving]    = useState(false);
-  const [formErr,   setFormErr]   = useState('');
+  const [custId, setCustId] = useState(null);
+  const [rating, setRating] = useState(5);
+  const [content, setContent] = useState('');
+  const [saving, setSaving] = useState(false);
+  const [formErr, setFormErr] = useState('');
 
   useEffect(() => {
     api.get(`/products/${id}`).then(r => setProduct(r.data));
@@ -49,9 +49,9 @@ export default function ProductDetailsPage() {
       setSaving(true);
       const { data } = await api.post('/reviews', {
         customerId: custId,
-        productId:  Number(id),
-        rating:     Number(rating),
-        content:    content.trim()
+        productId: Number(id),
+        rating: Number(rating),
+        content: content.trim()
       });
 
       setReviews(prev => [...prev, data]);

@@ -7,9 +7,9 @@ global.TextDecoder = TextDecoder;
 jest.mock('./services/api', () => ({
   __esModule: true,
   default: {
-    get:    jest.fn(),
-    post:   jest.fn(),
-    put:    jest.fn(),
+    get: jest.fn(),
+    post: jest.fn(),
+    put: jest.fn(),
     delete: jest.fn(),
     interceptors: { request: { use: jest.fn() } }
   }
